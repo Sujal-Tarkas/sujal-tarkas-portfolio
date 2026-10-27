@@ -4262,3 +4262,63 @@ body.light-mode .designing-page-projects .creative-project img {
     }
 
 }
+
+/* FIX: SKILL TEXT VISIBLE ON MOBILE ONLY */
+@media screen and (max-width: 768px) {
+
+    #skills .skill-card {
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        justify-content: flex-start !important;
+        text-align: left !important;
+        overflow: visible !important;
+    }
+
+    #skills .skill-icon {
+        flex: 0 0 50px !important;
+        width: 50px !important;
+        min-width: 50px !important;
+    }
+
+    #skills .skill-info {
+        display: flex !important;
+        flex: 1 1 auto !important;
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        width: auto !important;
+        min-width: 0 !important;
+        height: auto !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        overflow: visible !important;
+        position: relative !important;
+        z-index: 2 !important;
+        color: inherit !important;
+    }
+
+    #skills .skill-info h3,
+    #skills .skill-info p {
+        display: block !important;
+        width: auto !important;
+        max-width: 100% !important;
+        height: auto !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        color: inherit !important;
+        white-space: normal !important;
+        overflow: visible !important;
+        text-align: left !important;
+    }
+
+    #skills .skill-info h3 {
+        font-size: 16px !important;
+        margin: 0 0 5px !important;
+    }
+
+    #skills .skill-info p {
+        font-size: 13px !important;
+        line-height: 1.5 !important;
+        margin: 0 !important;
+    }
+}
