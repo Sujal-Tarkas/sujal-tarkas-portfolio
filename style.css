@@ -4440,19 +4440,22 @@ body.light-mode .designing-page-projects .creative-project img {
     }
 }
 
-/* MOBILE MENU BUTTON - LIGHT MODE */
+/* MOBILE DROPDOWN MENU - LIGHT MODE */
 @media screen and (max-width: 768px) {
-    body.light-mode #menuToggle {
-        color: #111827 !important;
+    body.light-mode #navMenu {
         background: #ffffff !important;
         border: 1px solid #d1d5db !important;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12) !important;
     }
 
-    body.light-mode #menuToggle i {
+    body.light-mode #navMenu .nav-link {
         color: #111827 !important;
+        background: transparent !important;
     }
 
-    body.light-mode #menuToggle:hover {
+    body.light-mode #navMenu .nav-link:hover,
+    body.light-mode #navMenu .nav-link.active {
+        color: #111827 !important;
         background: #f3f4f6 !important;
     }
 }
