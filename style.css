@@ -4035,146 +4035,60 @@ body.light-mode .designing-page-projects .creative-project img {
 }
 
 /* =========================
-   MOBILE SCREEN FIX
+   MOBILE NAVBAR FIX
 ========================= */
 
-*,
-*::before,
-*::after {
-    box-sizing: border-box;
-}
-
-html {
-    width: 100%;
-    max-width: 100%;
-}
-
-body {
-    width: 100%;
-    max-width: 100%;
-    margin: 0;
-}
-
-img,
-video,
-iframe {
-    max-width: 100%;
-}
-
 @media (max-width: 600px) {
 
-    .hero-container {
+    .navbar {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .navbar .nav-container {
         width: 100%;
         max-width: 100%;
         min-width: 0;
-        padding: 35px 20px;
-        grid-template-columns: minmax(0, 1fr);
-    }
-
-    .hero-content {
-        width: 100%;
-        max-width: 100%;
-        min-width: 0;
-    }
-
-    .hero-content h1 {
-        max-width: 100%;
-        font-size: clamp(38px, 10vw, 54px);
-        line-height: 1.05;
-        overflow-wrap: break-word;
-    }
-
-    .hero-content p {
-        max-width: 100%;
-        overflow-wrap: break-word;
-    }
-
-    .va-hero {
-        width: 100%;
-        max-width: 100%;
-        min-width: 0;
-    }
-
-    .va-artwork-card {
-        max-width: 78%;
-    }
-
-    .contact-form-wrapper {
-        width: 100%;
-        max-width: 100%;
-        min-width: 0;
-    }
-
-    .contact-form input,
-    .contact-form textarea {
-        width: 100%;
-        max-width: 100%;
-        min-width: 0;
-    }
-}
-
-/* Mobile width fix */
-@media (max-width: 600px) {
-    .hero-container {
-        padding-left: 15px;
-        padding-right: 15px;
-    }
-
-    .hero-content,
-    .va-hero,
-    .contact-form-wrapper {
-        width: 100%;
-        max-width: 100%;
-        min-width: 0;
-    }
-
-    .hero-content h1 {
-        font-size: clamp(36px, 9vw, 50px);
-    }
-
-    body {
-        overflow-x: hidden;
-    }
-}
-
-/* Fix mobile header overflow */
-@media (max-width: 600px) {
-
-    .navbar,
-    .nav-container,
-    header nav {
-        max-width: 100%;
-        min-width: 0;
-    }
-
-    .nav-container {
-        width: 100%;
         padding-left: 16px;
         padding-right: 16px;
+
         display: flex;
         align-items: center;
         justify-content: space-between;
         gap: 10px;
     }
 
-    .logo,
-    .nav-logo,
-    .navbar-brand {
+    .navbar .logo {
+        flex: 1 1 auto;
         min-width: 0;
-        max-width: calc(100% - 110px);
-        font-size: clamp(18px, 5vw, 24px);
-        overflow-wrap: anywhere;
+        white-space: nowrap;
+        font-size: clamp(17px, 4.8vw, 23px);
     }
 
-    .menu-btn {
-        flex-shrink: 0;
-        margin-left: auto;
-        max-width: 44px;
+    .navbar .nav-actions {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 8px;
+
+        flex: 0 0 auto;
+        min-width: 0;
     }
 
-    .menu-btn,
-    .theme-toggle {
+    .navbar .icon-btn,
+    .navbar .menu-btn {
         width: 44px;
         height: 44px;
+        min-width: 44px;
+        flex-shrink: 0;
+        margin: 0;
+    }
+
+    .navbar .nav-menu {
+        box-sizing: border-box;
+        left: 0;
+        right: 0;
+        width: 100%;
+        max-width: 100%;
     }
 }
