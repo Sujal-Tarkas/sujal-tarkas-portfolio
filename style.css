@@ -4064,16 +4064,16 @@ iframe {
 @media (max-width: 400px) {
 
     .hero-container {
-        width: 100%;
-        max-width: 100%;
+        width: 90%;
+        max-width: 90%;
         min-width: 0;
         padding: 35px 20px;
         grid-template-columns: minmax(0, 1fr);
     }
 
     .hero-content {
-        width: 100%;
-        max-width: 100%;
+        width: 90%;
+        max-width: 90%;
         min-width: 0;
     }
 
