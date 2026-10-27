@@ -4034,81 +4034,26 @@ body.light-mode .designing-page-projects .creative-project img {
     margin-top: 20px;
 }
 
-/* =========================
-   MOBILE SCREEN FIX
-========================= */
-
-*,
-*::before,
-*::after {
-    box-sizing: border-box;
-}
-
-html {
-    width: 100%;
-    max-width: 100%;
-}
-
-body {
-    width: 100%;
-    max-width: 100%;
-    margin: 0;
-}
-
-img,
-video,
-iframe {
-    max-width: 100%;
-}
-
+/* Mobile width fix */
 @media (max-width: 600px) {
-
     .hero-container {
-        width: 100%;
-        max-width: 100%;
-        min-width: 0;
-        padding: 35px 20px;
-        grid-template-columns: minmax(0, 1fr);
+        padding-left: 15px;
+        padding-right: 15px;
     }
 
-    .hero-content {
-        width: 100%;
-        max-width: 100%;
-        min-width: 0;
-    }
-
-    .hero-content h1 {
-        max-width: 100%;
-        font-size: clamp(38px, 10vw, 54px);
-        line-height: 1.05;
-        overflow-wrap: break-word;
-    }
-
-    .hero-content p {
-        max-width: 100%;
-        overflow-wrap: break-word;
-    }
-
-    .va-hero {
-        width: 100%;
-        max-width: 100%;
-        min-width: 0;
-    }
-
-    .va-artwork-card {
-        max-width: 78%;
-    }
-
+    .hero-content,
+    .va-hero,
     .contact-form-wrapper {
         width: 100%;
         max-width: 100%;
         min-width: 0;
     }
 
-    .contact-form input,
-    .contact-form textarea {
-        width: 100%;
-        max-width: 100%;
-        min-width: 0;
+    .hero-content h1 {
+        font-size: clamp(36px, 9vw, 50px);
+    }
+
+    body {
+        overflow-x: hidden;
     }
 }
