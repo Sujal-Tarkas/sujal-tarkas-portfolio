@@ -4136,3 +4136,8 @@ iframe {
         overflow-x: hidden;
     }
 }
+@media(max-width:600px){
+  .hero-container{padding-inline:10px}
+  .hero-content{width:100%;min-width:0}
+  .hero-visual,.scroll-down{display:none}
+}
