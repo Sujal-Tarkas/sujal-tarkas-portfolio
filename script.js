@@ -1,15 +1,19 @@
 
 /* =========================
-   MOBILE MENU - SINGLE HANDLER
+   MOBILE MENU
 ========================= */
 
-const menuToggle = document.getElementById("menuToggle");
-const navMenu = document.getElementById("navMenu");
+function initializeMobileMenu() {
+    const menuToggle = document.getElementById("menuToggle");
+    const navMenu = document.getElementById("navMenu");
 
-if (menuToggle && navMenu) {
+    if (!menuToggle || !navMenu) {
+        console.error("Mobile menu: button or navMenu not found.");
+        return;
+    }
+
     function setMenuOpen(open) {
         navMenu.classList.toggle("active", open);
-
         menuToggle.setAttribute("aria-expanded", String(open));
         menuToggle.setAttribute(
             "aria-label",
@@ -27,17 +31,15 @@ if (menuToggle && navMenu) {
     menuToggle.addEventListener("click", function (event) {
         event.preventDefault();
 
-        const isOpen = navMenu.classList.contains("active");
-        setMenuOpen(!isOpen);
+        setMenuOpen(!navMenu.classList.contains("active"));
     });
 
-    navMenu.querySelectorAll(".nav-link").forEach(function (link) {
+    navMenu.querySelectorAll(".nav-link").forEach(link => {
         link.addEventListener("click", function () {
             setMenuOpen(false);
         });
     });
 
-    // Close the menu if the screen becomes desktop-sized
     window.addEventListener("resize", function () {
         if (window.innerWidth > 768) {
             setMenuOpen(false);
@@ -45,6 +47,12 @@ if (menuToggle && navMenu) {
     });
 
     setMenuOpen(false);
+}
+
+if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initializeMobileMenu);
+} else {
+    initializeMobileMenu();
 }
 
 
