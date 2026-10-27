@@ -4199,36 +4199,59 @@ body.light-mode .designing-page-projects .creative-project img {
 
 }
 
-/* Separate desktop and mobile skills sections */
+/* MOBILE SKILLS - FIX COMPRESSED LAYOUT */
+
 .mobile-skills-section {
     display: none !important;
 }
 
 @media screen and (max-width: 768px) {
 
+    /* Hide original skills section only on mobile */
     #skills {
         display: none !important;
     }
 
-    #skills-mobile.mobile-skills-section {
+    /* Show separate mobile section */
+    #skills-mobile {
         display: block !important;
         width: 100% !important;
-        overflow: visible !important;
-    }
-
-    #skills-mobile .container {
-        width: 100% !important;
         max-width: 100% !important;
-        padding-left: 16px !important;
-        padding-right: 16px !important;
+        height: auto !important;
+        min-height: 0 !important;
+        overflow: visible !important;
+        padding: 50px 0 !important;
         box-sizing: border-box !important;
     }
 
-    #skills-mobile .skills-grid {
-        display: grid !important;
-        grid-template-columns: minmax(0, 1fr) !important;
+    #skills-mobile .container {
+        display: block !important;
         width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 auto !important;
+        padding: 0 18px !important;
+        box-sizing: border-box !important;
+    }
+
+    #skills-mobile .section-heading {
+        display: block !important;
+        width: 100% !important;
+        margin-bottom: 28px !important;
+        text-align: left !important;
+    }
+
+    #skills-mobile .skills-grid {
+        display: flex !important;
+        flex-direction: column !important;
+        flex-wrap: nowrap !important;
+        align-items: stretch !important;
+        justify-content: flex-start !important;
         gap: 14px !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        height: auto !important;
+        margin: 0 !important;
+        padding: 0 !important;
     }
 
     #skills-mobile .skill-card {
@@ -4236,52 +4259,64 @@ body.light-mode .designing-page-projects .creative-project img {
         flex-direction: row !important;
         align-items: center !important;
         justify-content: flex-start !important;
-        gap: 14px !important;
+        gap: 16px !important;
         width: 100% !important;
+        max-width: 100% !important;
         min-width: 0 !important;
+        height: auto !important;
+        min-height: 88px !important;
         padding: 18px !important;
+        margin: 0 !important;
+        flex-shrink: 0 !important;
         text-align: left !important;
         box-sizing: border-box !important;
+        overflow: visible !important;
     }
 
     #skills-mobile .skill-icon {
         display: flex !important;
         flex: 0 0 48px !important;
         width: 48px !important;
+        min-width: 48px !important;
         height: 48px !important;
         align-items: center !important;
         justify-content: center !important;
+        margin: 0 !important;
     }
 
     #skills-mobile .skill-info {
         display: block !important;
-        flex: 1 1 auto !important;
-        min-width: 0 !important;
-        width: auto !important;
-        visibility: visible !important;
-        opacity: 1 !important;
         position: static !important;
-    }
-
-    #skills-mobile .skill-info h3,
-    #skills-mobile .skill-info p {
-        display: block !important;
+        flex: 1 1 0% !important;
+        width: auto !important;
+        min-width: 0 !important;
+        max-width: 100% !important;
+        height: auto !important;
         visibility: visible !important;
         opacity: 1 !important;
-        height: auto !important;
-        color: inherit !important;
-        white-space: normal !important;
         overflow: visible !important;
+        text-align: left !important;
     }
 
     #skills-mobile .skill-info h3 {
+        display: block !important;
         margin: 0 0 5px !important;
         font-size: 16px !important;
+        line-height: 1.4 !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        white-space: normal !important;
+        overflow-wrap: anywhere !important;
     }
 
     #skills-mobile .skill-info p {
+        display: block !important;
         margin: 0 !important;
         font-size: 13px !important;
         line-height: 1.5 !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        white-space: normal !important;
+        overflow-wrap: anywhere !important;
     }
 }
