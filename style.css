@@ -4041,15 +4041,12 @@ body.light-mode .designing-page-projects .creative-project img {
 
 @media screen and (max-width: 768px) {
 
-    
     .navbar {
-        position: relative !important;
         width: 100%;
         max-width: 100%;
         left: 0;
         right: 0;
     }
-
 
     .navbar .nav-container {
         width: 100%;
@@ -4408,5 +4405,32 @@ body.light-mode .designing-page-projects .creative-project img {
 @media screen and (max-width: 768px) {
     #navMenu .mobile-skills-link {
         display: block !important;
+    }
+}
+
+/* =========================
+   MOBILE NAVBAR POSITION FIX
+========================= */
+@media screen and (max-width: 768px) {
+    .navbar {
+        position: sticky !important;
+        top: 0 !important;
+        z-index: 10000 !important;
+        overflow: visible !important;
+    }
+
+    .nav-container {
+        position: relative !important;
+        overflow: visible !important;
+    }
+
+    #menuToggle {
+        position: relative !important;
+        z-index: 10002 !important;
+        pointer-events: auto !important;
+    }
+
+    #navMenu {
+        z-index: 10001 !important;
     }
 }
