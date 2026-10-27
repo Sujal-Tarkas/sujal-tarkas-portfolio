@@ -4034,15 +4034,18 @@ body.light-mode .designing-page-projects .creative-project img {
     margin-top: 20px;
 }
 
-/* =========================
-   MOBILE NAVBAR FIX
-========================= */
+/* ==============================
+   MOBILE HEADER FIX
+   Desktop remains unchanged
+============================== */
 
-@media (max-width: 100px) {
+@media screen and (max-width: 768px) {
 
     .navbar {
         width: 100%;
         max-width: 100%;
+        left: 0;
+        right: 0;
     }
 
     .navbar .nav-container {
@@ -4051,7 +4054,6 @@ body.light-mode .designing-page-projects .creative-project img {
         min-width: 0;
         padding-left: 16px;
         padding-right: 16px;
-
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -4062,33 +4064,51 @@ body.light-mode .designing-page-projects .creative-project img {
         flex: 1 1 auto;
         min-width: 0;
         white-space: nowrap;
-        font-size: clamp(17px, 4.8vw, 23px);
+        font-size: clamp(14px, 4vw, 18px);
     }
 
     .navbar .nav-actions {
+        flex: 0 0 auto;
         display: flex;
         align-items: center;
         justify-content: flex-end;
         gap: 8px;
-
-        flex: 0 0 auto;
-        min-width: 0;
+        margin-left: auto;
     }
 
     .navbar .icon-btn,
     .navbar .menu-btn {
-        width: 44px;
-        height: 44px;
-        min-width: 44px;
-        flex-shrink: 0;
-        margin: 0;
+        flex: 0 0 40px;
+        width: 40px;
+        min-width: 40px;
+        height: 40px;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
     .navbar .nav-menu {
-        box-sizing: border-box;
-        left: 0;
-        right: 0;
-        width: 100%;
         max-width: 100%;
+        box-sizing: border-box;
     }
+
+}
+
+@media screen and (max-width: 360px) {
+
+    .navbar .nav-container {
+        padding-left: 10px;
+        padding-right: 10px;
+        gap: 6px;
+    }
+
+    .navbar .nav-actions {
+        gap: 5px;
+    }
+
+    .navbar .logo {
+        font-size: 14px;
+    }
+
 }
