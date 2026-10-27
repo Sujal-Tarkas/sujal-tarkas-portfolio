@@ -4113,48 +4113,48 @@ body.light-mode .designing-page-projects .creative-project img {
 
 }
 
-/* ==============================
-   MOBILE CONTACT FORM WIDTH FIX
-   Desktop remains unchanged
-============================== */
-
+/* MOBILE: WIDER CONTACT FORM ONLY */
 @media screen and (max-width: 768px) {
 
-    .contact-section .contact-grid {
-        grid-template-columns: minmax(0, 1fr);
-        width: 100%;
-        max-width: 100%;
-    }
-
-    .contact-section .contact-form-wrapper {
-        width: 100%;
-        max-width: 100%;
-        min-width: 0;
+    #contact .container {
+        width: 100% !important;
+        max-width: 100% !important;
+        padding-left: 16px !important;
+        padding-right: 16px !important;
         box-sizing: border-box;
     }
 
-    .contact-section .contact-form {
-        width: 100%;
-        max-width: 100%;
-        min-width: 0;
+    #contact .contact-grid {
+        display: grid !important;
+        grid-template-columns: minmax(0, 1fr) !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        gap: 28px;
         box-sizing: border-box;
     }
 
-    .contact-section .form-row {
-        grid-template-columns: minmax(0, 1fr);
-    }
-
-    .contact-section .form-group {
-        width: 100%;
-        min-width: 0;
-    }
-
-    .contact-section .form-group input,
-    .contact-section .form-group textarea {
-        width: 100%;
-        max-width: 100%;
-        min-width: 0;
+    #contact .contact-form-wrapper,
+    #contact .contact-form {
+        width: 100% !important;
+        max-width: none !important;
+        min-width: 0 !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
         box-sizing: border-box;
     }
 
+    #contact .form-row {
+        display: grid !important;
+        grid-template-columns: minmax(0, 1fr) !important;
+        width: 100%;
+    }
+
+    #contact .form-group,
+    #contact .form-group input,
+    #contact .form-group textarea {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+        box-sizing: border-box;
+    }
 }
