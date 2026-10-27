@@ -4199,126 +4199,89 @@ body.light-mode .designing-page-projects .creative-project img {
 
 }
 
-/* ==============================
-   MOBILE SKILLS SECTION FIX
-   Desktop remains unchanged
-============================== */
-
-@media screen and (max-width: 768px) {
-
-    #skills .skills-grid {
-        display: grid !important;
-        grid-template-columns: minmax(0, 1fr) !important;
-        width: 100%;
-        gap: 14px;
-    }
-
-    #skills .skill-card {
-        display: flex !important;
-        flex-direction: row !important;
-        align-items: center !important;
-        justify-content: flex-start !important;
-        gap: 16px;
-        width: 100% !important;
-        min-width: 0;
-        padding: 18px;
-        box-sizing: border-box;
-        text-align: left !important;
-    }
-
-    #skills .skill-icon {
-        display: flex !important;
-        flex: 0 0 48px;
-        width: 48px;
-        height: 48px;
-        align-items: center;
-        justify-content: center;
-    }
-
-    #skills .skill-info {
-        display: block !important;
-        flex: 1 1 auto;
-        min-width: 0;
-        visibility: visible !important;
-        opacity: 1 !important;
-    }
-
-    #skills .skill-info h3,
-    #skills .skill-info p {
-        display: block !important;
-        visibility: visible !important;
-        opacity: 1 !important;
-        overflow-wrap: anywhere;
-    }
-
-    #skills .skill-info h3 {
-        margin: 0 0 4px;
-    }
-
-    #skills .skill-info p {
-        margin: 0;
-        font-size: 13px;
-        line-height: 1.5;
-    }
-
+/* Separate desktop and mobile skills sections */
+.mobile-skills-section {
+    display: none !important;
 }
 
-/* FIX: SKILL TEXT VISIBLE ON MOBILE ONLY */
 @media screen and (max-width: 768px) {
 
-    #skills .skill-card {
+    #skills {
+        display: none !important;
+    }
+
+    #skills-mobile.mobile-skills-section {
+        display: block !important;
+        width: 100% !important;
+        overflow: visible !important;
+    }
+
+    #skills-mobile .container {
+        width: 100% !important;
+        max-width: 100% !important;
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+        box-sizing: border-box !important;
+    }
+
+    #skills-mobile .skills-grid {
+        display: grid !important;
+        grid-template-columns: minmax(0, 1fr) !important;
+        width: 100% !important;
+        gap: 14px !important;
+    }
+
+    #skills-mobile .skill-card {
         display: flex !important;
         flex-direction: row !important;
         align-items: center !important;
         justify-content: flex-start !important;
-        text-align: left !important;
-        overflow: visible !important;
-    }
-
-    #skills .skill-icon {
-        flex: 0 0 50px !important;
-        width: 50px !important;
-        min-width: 50px !important;
-    }
-
-    #skills .skill-info {
-        display: flex !important;
-        flex: 1 1 auto !important;
-        flex-direction: column !important;
-        align-items: flex-start !important;
-        width: auto !important;
+        gap: 14px !important;
+        width: 100% !important;
         min-width: 0 !important;
-        height: auto !important;
-        visibility: visible !important;
-        opacity: 1 !important;
-        overflow: visible !important;
-        position: relative !important;
-        z-index: 2 !important;
-        color: inherit !important;
+        padding: 18px !important;
+        text-align: left !important;
+        box-sizing: border-box !important;
     }
 
-    #skills .skill-info h3,
-    #skills .skill-info p {
+    #skills-mobile .skill-icon {
+        display: flex !important;
+        flex: 0 0 48px !important;
+        width: 48px !important;
+        height: 48px !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+
+    #skills-mobile .skill-info {
         display: block !important;
+        flex: 1 1 auto !important;
+        min-width: 0 !important;
         width: auto !important;
-        max-width: 100% !important;
-        height: auto !important;
         visibility: visible !important;
         opacity: 1 !important;
+        position: static !important;
+    }
+
+    #skills-mobile .skill-info h3,
+    #skills-mobile .skill-info p {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        height: auto !important;
         color: inherit !important;
         white-space: normal !important;
         overflow: visible !important;
-        text-align: left !important;
     }
 
-    #skills .skill-info h3 {
-        font-size: 16px !important;
+    #skills-mobile .skill-info h3 {
         margin: 0 0 5px !important;
+        font-size: 16px !important;
     }
 
-    #skills .skill-info p {
+    #skills-mobile .skill-info p {
+        margin: 0 !important;
         font-size: 13px !important;
         line-height: 1.5 !important;
-        margin: 0 !important;
     }
 }
