@@ -4440,22 +4440,25 @@ body.light-mode .designing-page-projects .creative-project img {
     }
 }
 
-/* MOBILE DROPDOWN MENU - LIGHT MODE */
+/* FIX: OPEN MOBILE MENU IN LIGHT MODE */
 @media screen and (max-width: 768px) {
-    body.light-mode #navMenu {
-        background: #ffffff !important;
-        border: 1px solid #d1d5db !important;
+    body.light-mode #navMenu,
+    body.light-mode #navMenu.active {
+        background-color: #ffffff !important;
+        background-image: none !important;
+        border-color: #d1d5db !important;
+        color: #111827 !important;
         box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12) !important;
     }
 
     body.light-mode #navMenu .nav-link {
         color: #111827 !important;
-        background: transparent !important;
+        background-color: transparent !important;
     }
 
-    body.light-mode #navMenu .nav-link:hover,
-    body.light-mode #navMenu .nav-link.active {
+    body.light-mode #navMenu .nav-link.active,
+    body.light-mode #navMenu .nav-link:hover {
+        background-color: #f3f4f6 !important;
         color: #111827 !important;
-        background: #f3f4f6 !important;
     }
 }
