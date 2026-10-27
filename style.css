@@ -4041,12 +4041,15 @@ body.light-mode .designing-page-projects .creative-project img {
 
 @media screen and (max-width: 768px) {
 
+    
     .navbar {
+        position: relative !important;
         width: 100%;
         max-width: 100%;
         left: 0;
         right: 0;
     }
+
 
     .navbar .nav-container {
         width: 100%;
