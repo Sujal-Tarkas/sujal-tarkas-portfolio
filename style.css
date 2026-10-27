@@ -4113,48 +4113,54 @@ body.light-mode .designing-page-projects .creative-project img {
 
 }
 
-/* MOBILE: WIDER CONTACT FORM ONLY */
+/* ==============================
+   SEPARATE MOBILE CONTACT CONTAINER
+   Desktop remains unchanged
+============================== */
+
 @media screen and (max-width: 768px) {
 
-    #contact .container {
-        width: 100% !important;
-        max-width: 100% !important;
-        padding-left: 16px !important;
-        padding-right: 16px !important;
-        box-sizing: border-box;
-    }
-
     #contact .contact-grid {
-        display: grid !important;
-        grid-template-columns: minmax(0, 1fr) !important;
-        width: 100% !important;
-        max-width: 100% !important;
-        gap: 28px;
-        box-sizing: border-box;
+        display: flex !important;
+        flex-direction: column;
+        align-items: stretch;
+        width: 100%;
+        max-width: 100%;
     }
 
-    #contact .contact-form-wrapper,
-    #contact .contact-form {
-        width: 100% !important;
+    #contact .mobile-contact-container {
+        display: block;
+        position: relative;
+        width: calc(100vw - 32px) !important;
         max-width: none !important;
-        min-width: 0 !important;
-        margin-left: 0 !important;
-        margin-right: 0 !important;
+        min-width: 0;
+        margin-left: calc((100% - (100vw - 32px)) / 2);
+        padding: 20px;
+        box-sizing: border-box;
+        align-self: center;
+    }
+
+    #contact .mobile-contact-container .contact-form {
+        width: 100%;
+        max-width: none;
+        min-width: 0;
+        margin: 0;
         box-sizing: border-box;
     }
 
-    #contact .form-row {
-        display: grid !important;
-        grid-template-columns: minmax(0, 1fr) !important;
+    #contact .mobile-contact-container .form-row {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
         width: 100%;
     }
 
-    #contact .form-group,
-    #contact .form-group input,
-    #contact .form-group textarea {
-        width: 100% !important;
-        max-width: 100% !important;
-        min-width: 0 !important;
+    #contact .mobile-contact-container .form-group,
+    #contact .mobile-contact-container input,
+    #contact .mobile-contact-container textarea {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
         box-sizing: border-box;
     }
+
 }
