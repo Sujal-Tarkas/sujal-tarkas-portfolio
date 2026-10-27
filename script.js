@@ -1,31 +1,45 @@
 
- // =========================
- // MOBILE MENU
- // =========================
+/* =========================
+   MOBILE MENU
+========================= */
 
 const menuToggle = document.getElementById("menuToggle");
 const navMenu = document.getElementById("navMenu");
 
 if (menuToggle && navMenu) {
+    menuToggle.addEventListener("click", function () {
+        const isOpen = navMenu.classList.toggle("active");
 
-    menuToggle.addEventListener("click", () => {
-
-        navMenu.classList.toggle("active");
+        menuToggle.setAttribute("aria-expanded", String(isOpen));
+        menuToggle.setAttribute(
+            "aria-label",
+            isOpen ? "Close menu" : "Open menu"
+        );
 
         const icon = menuToggle.querySelector("i");
 
         if (icon) {
-            if (navMenu.classList.contains("active")) {
-                icon.classList.remove("fa-bars");
-                icon.classList.add("fa-xmark");
-            } else {
+            icon.classList.toggle("fa-bars", !isOpen);
+            icon.classList.toggle("fa-xmark", isOpen);
+        }
+    });
+
+    // Close menu after selecting a link
+    navMenu.querySelectorAll(".nav-link").forEach(function (link) {
+        link.addEventListener("click", function () {
+            navMenu.classList.remove("active");
+
+            menuToggle.setAttribute("aria-expanded", "false");
+            menuToggle.setAttribute("aria-label", "Open menu");
+
+            const icon = menuToggle.querySelector("i");
+
+            if (icon) {
                 icon.classList.remove("fa-xmark");
                 icon.classList.add("fa-bars");
             }
-        }
-
+        });
     });
-
 }
 
 
