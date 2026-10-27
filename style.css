@@ -4320,20 +4320,55 @@ body.light-mode .designing-page-projects .creative-project img {
     }
 }
 
-/* Mobile menu toggle */
+/* MOBILE NAVIGATION */
 @media screen and (max-width: 768px) {
-    .nav-links.active {
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: center !important;
-        gap: 18px !important;
-        width: 100% !important;
+    .nav-container {
+        position: relative !important;
+        overflow: visible !important;
     }
 
-    .menu-btn {
+    .navbar {
+        overflow: visible !important;
+    }
+
+    #navMenu {
+        display: none !important;
+        position: absolute !important;
+        top: calc(100% + 10px) !important;
+        left: 0 !important;
+        right: 0 !important;
+        width: 100% !important;
+        height: auto !important;
+        padding: 12px 18px !important;
+        margin: 0 !important;
+        flex-direction: column !important;
+        align-items: stretch !important;
+        gap: 4px !important;
+        background: #111827 !important;
+        border: 1px solid #374151 !important;
+        border-radius: 12px !important;
+        z-index: 99999 !important;
+        box-sizing: border-box !important;
+    }
+
+    #navMenu.active {
         display: flex !important;
-        cursor: pointer;
-        align-items: center;
-        justify-content: center;
+    }
+
+    #navMenu .nav-link {
+        display: block !important;
+        width: 100% !important;
+        padding: 12px !important;
+        text-align: left !important;
+        box-sizing: border-box !important;
+    }
+
+    #menuToggle {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        cursor: pointer !important;
+        position: relative !important;
+        z-index: 100000 !important;
     }
 }

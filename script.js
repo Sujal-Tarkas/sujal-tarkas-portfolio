@@ -1,86 +1,51 @@
 
-/* MOBILE MENU - FORCE OPEN/CLOSE */
+/* =========================
+   MOBILE MENU - SINGLE HANDLER
+========================= */
 
-document.addEventListener("DOMContentLoaded", function () {
-    const button = document.getElementById("menuToggle");
-    const menu = document.getElementById("navMenu");
+const menuToggle = document.getElementById("menuToggle");
+const navMenu = document.getElementById("navMenu");
 
-    if (!button || !menu) {
-        console.error("Menu button or navigation menu not found.");
-        return;
-    }
+if (menuToggle && navMenu) {
+    function setMenuOpen(open) {
+        navMenu.classList.toggle("active", open);
 
-    function closeMenu() {
-        menu.classList.remove("active");
-        menu.style.setProperty("display", "none", "important");
-
-        const icon = button.querySelector("i");
-        if (icon) {
-            icon.classList.remove("fa-xmark");
-            icon.classList.add("fa-bars");
-        }
-
-        button.setAttribute("aria-expanded", "false");
-    }
-
-    button.addEventListener("click", function (event) {
-        event.preventDefault();
-
-        const isOpen = menu.classList.toggle("active");
-
-        menu.style.setProperty(
-            "display",
-            isOpen ? "flex" : "none",
-            "important"
+        menuToggle.setAttribute("aria-expanded", String(open));
+        menuToggle.setAttribute(
+            "aria-label",
+            open ? "Close menu" : "Open menu"
         );
-
-        if (isOpen) {
-            menu.style.setProperty("flex-direction", "column", "important");
-            menu.style.setProperty("position", "absolute", "important");
-            menu.style.setProperty("top", "100%", "important");
-            menu.style.setProperty("left", "0", "important");
-            menu.style.setProperty("right", "0", "important");
-            menu.style.setProperty("width", "100%", "important");
-            menu.style.setProperty("height", "auto", "important");
-            menu.style.setProperty("background", "#111827", "important");
-            menu.style.setProperty("padding", "16px", "important");
-            menu.style.setProperty("z-index", "99999", "important");
-            menu.style.setProperty("gap", "12px", "important");
-        }
-
-        const icon = button.querySelector("i");
-        if (icon) {
-            icon.classList.toggle("fa-bars", !isOpen);
-            icon.classList.toggle("fa-xmark", isOpen);
-        }
-
-        button.setAttribute("aria-expanded", String(isOpen));
-    });
-
-    menu.querySelectorAll("a").forEach(function (link) {
-        link.addEventListener("click", closeMenu);
-    });
-});
-
-
-// =========================
-// CLOSE MENU AFTER CLICK
-// =========================
-
-document.querySelectorAll(".nav-link").forEach(link => {
-
-    link.addEventListener("click", () => {
-
-        navMenu.classList.remove("active");
 
         const icon = menuToggle.querySelector("i");
 
-        icon.classList.remove("fa-xmark");
-        icon.classList.add("fa-bars");
+        if (icon) {
+            icon.classList.toggle("fa-bars", !open);
+            icon.classList.toggle("fa-xmark", open);
+        }
+    }
 
+    menuToggle.addEventListener("click", function (event) {
+        event.preventDefault();
+
+        const isOpen = navMenu.classList.contains("active");
+        setMenuOpen(!isOpen);
     });
 
-});
+    navMenu.querySelectorAll(".nav-link").forEach(function (link) {
+        link.addEventListener("click", function () {
+            setMenuOpen(false);
+        });
+    });
+
+    // Close the menu if the screen becomes desktop-sized
+    window.addEventListener("resize", function () {
+        if (window.innerWidth > 768) {
+            setMenuOpen(false);
+        }
+    });
+
+    setMenuOpen(false);
+}
 
 
 /* =========================
@@ -214,25 +179,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
-
-if (menuToggle && navMenu) {
-    menuToggle.addEventListener("click", () => {
-        navMenu.classList.toggle("active");
-
-        const icon = menuToggle.querySelector("i");
-
-        if (icon) {
-            icon.classList.toggle(
-                "fa-xmark",
-                navMenu.classList.contains("active")
-            );
-            icon.classList.toggle(
-                "fa-bars",
-                !navMenu.classList.contains("active")
-            );
-        }
-    });
-}
 
 /* DESIGN PAGE CATEGORY FILTER */
 const designFilters = document.querySelectorAll(".design-filter");
