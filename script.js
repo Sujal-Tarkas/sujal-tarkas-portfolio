@@ -1,33 +1,66 @@
 
- // =========================
- // MOBILE MENU
- // =========================
+/* MOBILE MENU - FORCE OPEN/CLOSE */
 
-const menuToggle = document.getElementById("menuToggle");
-const navMenu = document.getElementById("navMenu");
+document.addEventListener("DOMContentLoaded", function () {
+    const button = document.getElementById("menuToggle");
+    const menu = document.getElementById("navMenu");
 
-if (menuToggle && navMenu) {
+    if (!button || !menu) {
+        console.error("Menu button or navigation menu not found.");
+        return;
+    }
 
-    menuToggle.addEventListener("click", () => {
+    function closeMenu() {
+        menu.classList.remove("active");
+        menu.style.setProperty("display", "none", "important");
 
-        navMenu.classList.toggle("active");
-
-        const icon = menuToggle.querySelector("i");
-
+        const icon = button.querySelector("i");
         if (icon) {
-            if (navMenu.classList.contains("active")) {
-                icon.classList.remove("fa-bars");
-                icon.classList.add("fa-xmark");
-            } else {
-                icon.classList.remove("fa-xmark");
-                icon.classList.add("fa-bars");
-            }
+            icon.classList.remove("fa-xmark");
+            icon.classList.add("fa-bars");
         }
 
+        button.setAttribute("aria-expanded", "false");
+    }
+
+    button.addEventListener("click", function (event) {
+        event.preventDefault();
+
+        const isOpen = menu.classList.toggle("active");
+
+        menu.style.setProperty(
+            "display",
+            isOpen ? "flex" : "none",
+            "important"
+        );
+
+        if (isOpen) {
+            menu.style.setProperty("flex-direction", "column", "important");
+            menu.style.setProperty("position", "absolute", "important");
+            menu.style.setProperty("top", "100%", "important");
+            menu.style.setProperty("left", "0", "important");
+            menu.style.setProperty("right", "0", "important");
+            menu.style.setProperty("width", "100%", "important");
+            menu.style.setProperty("height", "auto", "important");
+            menu.style.setProperty("background", "#111827", "important");
+            menu.style.setProperty("padding", "16px", "important");
+            menu.style.setProperty("z-index", "99999", "important");
+            menu.style.setProperty("gap", "12px", "important");
+        }
+
+        const icon = button.querySelector("i");
+        if (icon) {
+            icon.classList.toggle("fa-bars", !isOpen);
+            icon.classList.toggle("fa-xmark", isOpen);
+        }
+
+        button.setAttribute("aria-expanded", String(isOpen));
     });
 
-}
-
+    menu.querySelectorAll("a").forEach(function (link) {
+        link.addEventListener("click", closeMenu);
+    });
+});
 
 
 // =========================
@@ -226,28 +259,6 @@ designFilters.forEach(button => {
             } else {
                 collection.classList.add("filter-hidden");
             }
-        });
-    });
-});
-
-/* Mobile Navigation Menu */
-document.addEventListener("DOMContentLoaded", function () {
-    const menuBtn = document.querySelector(".menu-btn");
-    const navLinks = document.querySelector(".nav-links");
-
-    if (!menuBtn || !navLinks) return;
-
-    menuBtn.addEventListener("click", function () {
-        const isOpen = navLinks.classList.toggle("active");
-
-        menuBtn.setAttribute("aria-expanded", String(isOpen));
-    });
-
-    // Close menu after clicking a navigation link
-    navLinks.querySelectorAll("a").forEach(function (link) {
-        link.addEventListener("click", function () {
-            navLinks.classList.remove("active");
-            menuBtn.setAttribute("aria-expanded", "false");
         });
     });
 });
