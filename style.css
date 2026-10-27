@@ -4061,19 +4061,19 @@ iframe {
     max-width: 100%;
 }
 
-@media (max-width: 400px) {
+@media (max-width: 600px) {
 
     .hero-container {
-        width: 90%;
-        max-width: 90%;
+        width: 100%;
+        max-width: 100%;
         min-width: 0;
         padding: 35px 20px;
         grid-template-columns: minmax(0, 1fr);
     }
 
     .hero-content {
-        width: 90%;
-        max-width: 90%;
+        width: 100%;
+        max-width: 100%;
         min-width: 0;
     }
 
@@ -4114,7 +4114,7 @@ iframe {
 }
 
 /* Mobile width fix */
-@media (max-width: 400px) {
+@media (max-width: 600px) {
     .hero-container {
         padding-left: 15px;
         padding-right: 15px;
@@ -4134,5 +4134,47 @@ iframe {
 
     body {
         overflow-x: hidden;
+    }
+}
+
+/* Fix mobile header overflow */
+@media (max-width: 600px) {
+
+    .navbar,
+    .nav-container,
+    header nav {
+        max-width: 100%;
+        min-width: 0;
+    }
+
+    .nav-container {
+        width: 100%;
+        padding-left: 16px;
+        padding-right: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+    }
+
+    .logo,
+    .nav-logo,
+    .navbar-brand {
+        min-width: 0;
+        max-width: calc(100% - 110px);
+        font-size: clamp(18px, 5vw, 24px);
+        overflow-wrap: anywhere;
+    }
+
+    .menu-btn {
+        flex-shrink: 0;
+        margin-left: auto;
+        max-width: 44px;
+    }
+
+    .menu-btn,
+    .theme-toggle {
+        width: 44px;
+        height: 44px;
     }
 }
