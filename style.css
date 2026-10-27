@@ -4175,7 +4175,6 @@ body.light-mode .designing-page-projects .creative-project img {
         margin-left: calc((100% - (100vw - 24px)) / 2) !important;
         padding: 20px !important;
         box-sizing: border-box !important;
-        border: 2px solid red !important;
     }
 
     #contact .contact-form {
