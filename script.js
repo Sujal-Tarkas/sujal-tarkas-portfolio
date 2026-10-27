@@ -212,3 +212,23 @@ designFilters.forEach(button => {
         });
     });
 });
+
+/* Fix Skills navigation on mobile */
+document.querySelectorAll('#navMenu a[href="#skills"]').forEach(link => {
+    link.addEventListener("click", function (event) {
+        if (window.innerWidth <= 768) {
+            event.preventDefault();
+
+            const mobileSkills = document.getElementById("skills-mobile");
+
+            if (mobileSkills) {
+                mobileSkills.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start"
+                });
+
+                history.replaceState(null, "", "#skills");
+            }
+        }
+    });
+});

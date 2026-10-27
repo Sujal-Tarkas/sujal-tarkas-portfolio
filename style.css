@@ -4372,3 +4372,14 @@ body.light-mode .designing-page-projects .creative-project img {
         z-index: 100000 !important;
     }
 }
+
+/* Skills navigation link */
+.mobile-skills-link {
+    display: none !important;
+}
+
+@media screen and (max-width: 768px) {
+    #navMenu .mobile-skills-link {
+        display: block !important;
+    }
+}
