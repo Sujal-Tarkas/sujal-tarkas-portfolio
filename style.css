@@ -4038,7 +4038,7 @@ body.light-mode .designing-page-projects .creative-project img {
    MOBILE NAVBAR FIX
 ========================= */
 
-@media (max-width: 600px) {
+@media (max-width: 100px) {
 
     .navbar {
         width: 100%;
