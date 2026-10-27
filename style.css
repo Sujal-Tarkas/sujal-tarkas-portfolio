@@ -4198,3 +4198,67 @@ body.light-mode .designing-page-projects .creative-project img {
     }
 
 }
+
+/* ==============================
+   MOBILE SKILLS SECTION FIX
+   Desktop remains unchanged
+============================== */
+
+@media screen and (max-width: 768px) {
+
+    #skills .skills-grid {
+        display: grid !important;
+        grid-template-columns: minmax(0, 1fr) !important;
+        width: 100%;
+        gap: 14px;
+    }
+
+    #skills .skill-card {
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        justify-content: flex-start !important;
+        gap: 16px;
+        width: 100% !important;
+        min-width: 0;
+        padding: 18px;
+        box-sizing: border-box;
+        text-align: left !important;
+    }
+
+    #skills .skill-icon {
+        display: flex !important;
+        flex: 0 0 48px;
+        width: 48px;
+        height: 48px;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #skills .skill-info {
+        display: block !important;
+        flex: 1 1 auto;
+        min-width: 0;
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+
+    #skills .skill-info h3,
+    #skills .skill-info p {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        overflow-wrap: anywhere;
+    }
+
+    #skills .skill-info h3 {
+        margin: 0 0 4px;
+    }
+
+    #skills .skill-info p {
+        margin: 0;
+        font-size: 13px;
+        line-height: 1.5;
+    }
+
+}
