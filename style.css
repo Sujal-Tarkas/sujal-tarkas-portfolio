@@ -4112,3 +4112,49 @@ body.light-mode .designing-page-projects .creative-project img {
     }
 
 }
+
+/* ==============================
+   MOBILE CONTACT FORM WIDTH FIX
+   Desktop remains unchanged
+============================== */
+
+@media screen and (max-width: 768px) {
+
+    .contact-section .contact-grid {
+        grid-template-columns: minmax(0, 1fr);
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .contact-section .contact-form-wrapper {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        box-sizing: border-box;
+    }
+
+    .contact-section .contact-form {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        box-sizing: border-box;
+    }
+
+    .contact-section .form-row {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .contact-section .form-group {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .contact-section .form-group input,
+    .contact-section .form-group textarea {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        box-sizing: border-box;
+    }
+
+}
