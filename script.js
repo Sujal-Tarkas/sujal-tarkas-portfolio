@@ -81,150 +81,67 @@ if (themeToggle) {
     });
 }
 
-// =========================
-// ACTIVE NAVIGATION
-// =========================
+/* =========================
+   ACTIVE NAVIGATION FIX
+========================= */
 
-const sections = document.querySelectorAll("section");
 const navLinks = document.querySelectorAll(".nav-link");
 
-window.addEventListener("scroll", () => {
+function updateActiveNavigation() {
+    const isMobile = window.innerWidth <= 768;
 
-    let current = "";
+    const sectionIds = [
+        "home",
+        "about",
+        isMobile ? "skills-mobile" : "skills",
+        "projects",
+        "contact"
+    ];
 
-    sections.forEach(section => {
+    // Find the section closest to the top of the viewport
+    let current = "home";
+    let closestDistance = Infinity;
 
-        const sectionTop = section.offsetTop - 150;
+    sectionIds.forEach(id => {
+        const section = document.getElementById(id);
 
-        if (window.scrollY >= sectionTop) {
-            current = section.getAttribute("id");
+        if (!section) return;
+
+        const rect = section.getBoundingClientRect();
+
+        // Ignore sections hidden by CSS
+        if (rect.width === 0 || rect.height === 0) return;
+
+        const distance = Math.abs(rect.top - 150);
+
+        if (rect.top <= window.innerHeight && rect.bottom > 0 &&
+            distance < closestDistance) {
+            closestDistance = distance;
+            current = id;
         }
-
     });
+
+    // At the very top, always highlight Home
+    if (window.scrollY < 50) {
+        current = "home";
+    }
 
     navLinks.forEach(link => {
+        const href = link.getAttribute("href");
+        const isActive =
+            href === "#" + current ||
+            (current === "skills-mobile" && href === "#skills-mobile");
 
-        link.classList.remove("active");
-
-        if (link.getAttribute("href") === "#" + current) {
-            link.classList.add("active");
-        }
-
-    });
-
-});
-
-function showProjects(category, selectedButton) {
-    const gallery = document.getElementById("creativeGallery");
-    const projectsContainer = document.getElementById("creativeProjects");
-    const title = document.getElementById("galleryTitle");
-    const count = document.getElementById("projectCount");
-
-    const selectedWork = creativeWork[category];
-
-    if (!selectedWork) return;
-
-    document.querySelectorAll(".creative-folder").forEach(folder => {
-        folder.classList.remove("active");
-    });
-
-    selectedButton.classList.add("active");
-
-    title.textContent = selectedWork.title;
-    count.textContent = `${selectedWork.projects.length} Projects`;
-
-    projectsContainer.replaceChildren();
-
-    selectedWork.projects.forEach(project => {
-        const card = document.createElement("article");
-        card.className = "creative-project";
-
-        const img = document.createElement("img");
-        img.src = project.image;
-        img.alt = project.title;
-        img.loading = "lazy";
-
-        const info = document.createElement("div");
-        info.className = "creative-project-info";
-
-        const heading = document.createElement("h4");
-        heading.textContent = project.title;
-
-        const description = document.createElement("p");
-        description.textContent = project.description;
-        description.style.fontWeight = "bold";
-
-        img.addEventListener("error", () => {
-            img.alt = `${project.title} image unavailable`;
-            img.style.display = "none";
-        });
-
-        info.append(heading, description);
-        card.append(img, info);
-        projectsContainer.appendChild(card);
-    });
-
-    gallery.scrollIntoView({
-        behavior: "smooth",
-        block: "start"
+        link.classList.toggle("active", isActive);
     });
 }
 
-function showProjects(category, selectedButton) {
-    const gallery = document.getElementById("creativeGallery");
-    const projectsContainer = document.getElementById("creativeProjects");
-    const title = document.getElementById("galleryTitle");
-    const count = document.getElementById("projectCount");
+window.addEventListener("scroll", updateActiveNavigation);
+window.addEventListener("resize", updateActiveNavigation);
+window.addEventListener("load", updateActiveNavigation);
 
-    const selectedWork = creativeWork[category];
+updateActiveNavigation();
 
-    if (!selectedWork) return;
-
-    document.querySelectorAll(".creative-folder").forEach(folder => {
-        folder.classList.remove("active");
-    });
-
-    selectedButton.classList.add("active");
-
-    title.textContent = selectedWork.title;
-    count.textContent = `${selectedWork.projects.length} Projects`;
-
-    projectsContainer.replaceChildren();
-
-    selectedWork.projects.forEach(project => {
-        const card = document.createElement("article");
-        card.className = "creative-project";
-
-        const img = document.createElement("img");
-        img.src = project.image;
-        img.alt = project.title;
-        img.loading = "lazy";
-
-        const info = document.createElement("div");
-        info.className = "creative-project-info";
-
-        const heading = document.createElement("h4");
-        heading.textContent = project.title;
-
-        const description = document.createElement("p");
-        description.textContent = project.description;
-        description.style.fontWeight = "bold";
-
-        img.addEventListener("error", () => {
-            img.alt = `${project.title} image unavailable`;
-            img.style.display = "none";
-        });
-
-        info.append(heading, description);
-        card.append(img, info);
-        projectsContainer.appendChild(card);
-    });
-
-    gallery.scrollIntoView({
-        behavior: "smooth",
-        block: "start"
-    });
-}
 
 /* Show Designing projects on initial page load */
 document.addEventListener("DOMContentLoaded", () => {
