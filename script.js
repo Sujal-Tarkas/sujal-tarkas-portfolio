@@ -170,12 +170,16 @@ function showProjects(category, selectedButton) {
     });
 }
 
-// Show Designing projects on initial page load
+/* Show Designing projects on initial page load */
 document.addEventListener("DOMContentLoaded", () => {
     const firstFolder = document.querySelector(".creative-folder");
 
-    if (firstFolder) {
+    if (firstFolder && typeof creativeWork !== "undefined") {
         showProjects("designing", firstFolder);
+    } else if (firstFolder) {
+        console.error(
+            "Project data is missing: creativeWork is not defined."
+        );
     }
 });
 
