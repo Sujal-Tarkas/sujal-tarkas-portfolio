@@ -4164,3 +4164,37 @@ body.light-mode .designing-page-projects .creative-project img {
     }
 
 }
+
+/* POCO M3 - CONTACT FORM WIDTH TEST */
+@media screen and (max-width: 768px) {
+
+    #contact .contact-form-wrapper {
+        width: calc(100vw - 24px) !important;
+        max-width: calc(100vw - 24px) !important;
+        min-width: 0 !important;
+        margin-left: calc((100% - (100vw - 24px)) / 2) !important;
+        padding: 20px !important;
+        box-sizing: border-box !important;
+        border: 2px solid red !important;
+    }
+
+    #contact .contact-form {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+        box-sizing: border-box !important;
+    }
+
+    #contact .form-row {
+        grid-template-columns: minmax(0, 1fr) !important;
+    }
+
+    #contact .form-group input,
+    #contact .form-group textarea {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+        box-sizing: border-box !important;
+    }
+
+}
