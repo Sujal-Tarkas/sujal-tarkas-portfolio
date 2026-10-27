@@ -170,6 +170,62 @@ function showProjects(category, selectedButton) {
     });
 }
 
+function showProjects(category, selectedButton) {
+    const gallery = document.getElementById("creativeGallery");
+    const projectsContainer = document.getElementById("creativeProjects");
+    const title = document.getElementById("galleryTitle");
+    const count = document.getElementById("projectCount");
+
+    const selectedWork = creativeWork[category];
+
+    if (!selectedWork) return;
+
+    document.querySelectorAll(".creative-folder").forEach(folder => {
+        folder.classList.remove("active");
+    });
+
+    selectedButton.classList.add("active");
+
+    title.textContent = selectedWork.title;
+    count.textContent = `${selectedWork.projects.length} Projects`;
+
+    projectsContainer.replaceChildren();
+
+    selectedWork.projects.forEach(project => {
+        const card = document.createElement("article");
+        card.className = "creative-project";
+
+        const img = document.createElement("img");
+        img.src = project.image;
+        img.alt = project.title;
+        img.loading = "lazy";
+
+        const info = document.createElement("div");
+        info.className = "creative-project-info";
+
+        const heading = document.createElement("h4");
+        heading.textContent = project.title;
+
+        const description = document.createElement("p");
+        description.textContent = project.description;
+        description.style.fontWeight = "bold";
+
+        img.addEventListener("error", () => {
+            img.alt = `${project.title} image unavailable`;
+            img.style.display = "none";
+        });
+
+        info.append(heading, description);
+        card.append(img, info);
+        projectsContainer.appendChild(card);
+    });
+
+    gallery.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
+}
+
 /* Show Designing projects on initial page load */
 document.addEventListener("DOMContentLoaded", () => {
     const firstFolder = document.querySelector(".creative-folder");
@@ -210,25 +266,5 @@ designFilters.forEach(button => {
                 collection.classList.add("filter-hidden");
             }
         });
-    });
-});
-
-/* Fix Skills navigation on mobile */
-document.querySelectorAll('#navMenu a[href="#skills"]').forEach(link => {
-    link.addEventListener("click", function (event) {
-        if (window.innerWidth <= 768) {
-            event.preventDefault();
-
-            const mobileSkills = document.getElementById("skills-mobile");
-
-            if (mobileSkills) {
-                mobileSkills.scrollIntoView({
-                    behavior: "smooth",
-                    block: "start"
-                });
-
-                history.replaceState(null, "", "#skills");
-            }
-        }
     });
 });
