@@ -1,45 +1,31 @@
 
-/* =========================
-   MOBILE MENU
-========================= */
+ // =========================
+ // MOBILE MENU
+ // =========================
 
 const menuToggle = document.getElementById("menuToggle");
 const navMenu = document.getElementById("navMenu");
 
 if (menuToggle && navMenu) {
-    menuToggle.addEventListener("click", function () {
-        const isOpen = navMenu.classList.toggle("active");
 
-        menuToggle.setAttribute("aria-expanded", String(isOpen));
-        menuToggle.setAttribute(
-            "aria-label",
-            isOpen ? "Close menu" : "Open menu"
-        );
+    menuToggle.addEventListener("click", () => {
+
+        navMenu.classList.toggle("active");
 
         const icon = menuToggle.querySelector("i");
 
         if (icon) {
-            icon.classList.toggle("fa-bars", !isOpen);
-            icon.classList.toggle("fa-xmark", isOpen);
-        }
-    });
-
-    // Close menu after selecting a link
-    navMenu.querySelectorAll(".nav-link").forEach(function (link) {
-        link.addEventListener("click", function () {
-            navMenu.classList.remove("active");
-
-            menuToggle.setAttribute("aria-expanded", "false");
-            menuToggle.setAttribute("aria-label", "Open menu");
-
-            const icon = menuToggle.querySelector("i");
-
-            if (icon) {
+            if (navMenu.classList.contains("active")) {
+                icon.classList.remove("fa-bars");
+                icon.classList.add("fa-xmark");
+            } else {
                 icon.classList.remove("fa-xmark");
                 icon.classList.add("fa-bars");
             }
-        });
+        }
+
     });
+
 }
 
 
@@ -240,6 +226,28 @@ designFilters.forEach(button => {
             } else {
                 collection.classList.add("filter-hidden");
             }
+        });
+    });
+});
+
+/* Mobile Navigation Menu */
+document.addEventListener("DOMContentLoaded", function () {
+    const menuBtn = document.querySelector(".menu-btn");
+    const navLinks = document.querySelector(".nav-links");
+
+    if (!menuBtn || !navLinks) return;
+
+    menuBtn.addEventListener("click", function () {
+        const isOpen = navLinks.classList.toggle("active");
+
+        menuBtn.setAttribute("aria-expanded", String(isOpen));
+    });
+
+    // Close menu after clicking a navigation link
+    navLinks.querySelectorAll("a").forEach(function (link) {
+        link.addEventListener("click", function () {
+            navLinks.classList.remove("active");
+            menuBtn.setAttribute("aria-expanded", "false");
         });
     });
 });
