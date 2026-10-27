@@ -4061,7 +4061,7 @@ iframe {
     max-width: 100%;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 400px) {
 
     .hero-container {
         width: 100%;
@@ -4114,7 +4114,7 @@ iframe {
 }
 
 /* Mobile width fix */
-@media (max-width: 600px) {
+@media (max-width: 400px) {
     .hero-container {
         padding-left: 15px;
         padding-right: 15px;
@@ -4135,9 +4135,4 @@ iframe {
     body {
         overflow-x: hidden;
     }
-}
-@media(max-width:600px){
-  .hero-container{padding-inline:10px}
-  .hero-content{width:100%;min-width:0}
-  .hero-visual,.scroll-down{display:none}
 }
