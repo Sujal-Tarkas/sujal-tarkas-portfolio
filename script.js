@@ -8,12 +8,16 @@ function initializeMobileMenu() {
     const navMenu = document.getElementById("navMenu");
 
     if (!menuToggle || !navMenu) {
-        console.error("Mobile menu: button or navMenu not found.");
+        console.error("Mobile menu elements not found:", {
+            menuToggle,
+            navMenu
+        });
         return;
     }
 
     function setMenuOpen(open) {
         navMenu.classList.toggle("active", open);
+
         menuToggle.setAttribute("aria-expanded", String(open));
         menuToggle.setAttribute(
             "aria-label",
@@ -26,12 +30,20 @@ function initializeMobileMenu() {
             icon.classList.toggle("fa-bars", !open);
             icon.classList.toggle("fa-xmark", open);
         }
+
+        console.log("Mobile menu open:", open);
     }
+
+    // Avoid registering duplicate handlers if initialization runs again.
+    if (menuToggle.dataset.menuInitialized === "true") return;
+    menuToggle.dataset.menuInitialized = "true";
 
     menuToggle.addEventListener("click", function (event) {
         event.preventDefault();
+        event.stopPropagation();
 
-        setMenuOpen(!navMenu.classList.contains("active"));
+        const isOpen = navMenu.classList.contains("active");
+        setMenuOpen(!isOpen);
     });
 
     navMenu.querySelectorAll(".nav-link").forEach(link => {
@@ -54,7 +66,6 @@ if (document.readyState === "loading") {
 } else {
     initializeMobileMenu();
 }
-
 
 /* =========================
    SHARED DARK/LIGHT MODE
