@@ -309,6 +309,11 @@ if (contactForm) {
             `?subject=${encodeURIComponent(subject)}` +
             `&body=${encodeURIComponent(body)}`;
 
-        window.location.href = mailtoURL;
-    });
+        const link = document.createElement("a");
+            link.href = mailtoURL;
+            link.target = "_self";
+            document.body.appendChild(link);
+            link.click();
+            link.remove();
+            });
 }
