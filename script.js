@@ -282,7 +282,7 @@ designFilters.forEach(button => {
 });
 
 /* =========================
-   CONTACT FORM
+   CONTACT FORM - GMAIL
 ========================= */
 
 const contactForm = document.getElementById("contactForm");
@@ -296,7 +296,7 @@ if (contactForm) {
         const subject = document.getElementById("subject").value.trim();
         const message = document.getElementById("message").value.trim();
 
-        // Replace with Sujal's actual email address
+        // Replace with Sujal's real email address
         const recipient = "work.sujaltarkas@gmail.com";
 
         const body =
@@ -304,16 +304,12 @@ if (contactForm) {
             `Email: ${email}\n\n` +
             `Message:\n${message}`;
 
-        const mailtoURL =
-            `mailto:${recipient}` +
-            `?subject=${encodeURIComponent(subject)}` +
+        const gmailURL =
+            "https://mail.google.com/mail/?view=cm&fs=1" +
+            `&to=${encodeURIComponent(recipient)}` +
+            `&su=${encodeURIComponent(subject)}` +
             `&body=${encodeURIComponent(body)}`;
 
-        const link = document.createElement("a");
-            link.href = mailtoURL;
-            link.target = "_self";
-            document.body.appendChild(link);
-            link.click();
-            link.remove();
-            });
+        window.open(gmailURL, "_blank");
+    });
 }
