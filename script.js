@@ -280,3 +280,35 @@ designFilters.forEach(button => {
         });
     });
 });
+
+/* =========================
+   CONTACT FORM
+========================= */
+
+const contactForm = document.getElementById("contactForm");
+
+if (contactForm) {
+    contactForm.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        const name = document.getElementById("name").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const subject = document.getElementById("subject").value.trim();
+        const message = document.getElementById("message").value.trim();
+
+        // Replace with Sujal's actual email address
+        const recipient = "work.sujaltarkas@gmail.com";
+
+        const body =
+            `Name: ${name}\n` +
+            `Email: ${email}\n\n` +
+            `Message:\n${message}`;
+
+        const mailtoURL =
+            `mailto:${recipient}` +
+            `?subject=${encodeURIComponent(subject)}` +
+            `&body=${encodeURIComponent(body)}`;
+
+        window.location.href = mailtoURL;
+    });
+}
