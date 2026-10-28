@@ -299,42 +299,35 @@ if (contactForm) {
         const message = document.getElementById("message").value.trim();
 
         const recipient = "work.sujaltarkas@gmail.com";
-        const body =
-            `Name: ${name}\nEmail: ${email}\n\n${message}`;
-
-        const params = new URLSearchParams({
-            view: "cm",
-            fs: "1",
-            to: recipient,
-            su: subject,
-            body: body
-        });
+        const body = `Name: ${name}\nEmail: ${email}\n\n${message}`;
 
         const isAndroid = /Android/i.test(navigator.userAgent);
         const isAppleMobile = /iPhone|iPad|iPod/i.test(navigator.userAgent);
 
         if (isAndroid) {
-            // Attempt to open Gmail directly on Android.
-            const gmailAppUrl =
+            const intentUrl =
                 "intent://compose?to=" + encodeURIComponent(recipient) +
                 "&subject=" + encodeURIComponent(subject) +
                 "&body=" + encodeURIComponent(body) +
-                "#Intent;scheme=mailto;" +
-                "package=com.google.android.gm;end";
+                "#Intent;scheme=mailto;package=com.google.android.gm;end";
 
-            window.location.href = gmailAppUrl;
-
+            window.location.href = intentUrl;
         } else if (isAppleMobile) {
-            // Attempt to open the Gmail app on iPhone/iPad.
-            const gmailAppUrl =
+            const gmailUrl =
                 "googlegmail://co?to=" + encodeURIComponent(recipient) +
                 "&subject=" + encodeURIComponent(subject) +
                 "&body=" + encodeURIComponent(body);
 
-            window.location.href = gmailAppUrl;
-
+            window.location.href = gmailUrl;
         } else {
-            // Desktop: retain Gmail web compose behavior.
+            const params = new URLSearchParams({
+                view: "cm",
+                fs: "1",
+                to: recipient,
+                su: subject,
+                body: body
+            });
+
             window.location.href =
                 "https://mail.google.com/mail/?" + params.toString();
         }
