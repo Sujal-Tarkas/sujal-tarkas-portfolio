@@ -286,48 +286,57 @@ designFilters.forEach(button => {
 ========================= */
 
 const contactForm = document.getElementById("contactForm");
-if (isMobile) {
-    const gmailWebUrl = new URL(
-        "https://mail.google.com/mail/mu/mp/539/"
-    );
 
-    gmailWebUrl.searchParams.set("to", recipient);
-    gmailWebUrl.searchParams.set("su", subject);
-    gmailWebUrl.searchParams.set("body", body);
-    gmailWebUrl.hash = "co";
+if (contactForm) {
+    contactForm.addEventListener("submit", function (event) {
+        event.preventDefault();
 
-    // Android: try opening Gmail through its Android intent.
-    if (/Android/i.test(navigator.userAgent)) {
-        const intentUrl =
-            "intent://mail.google.com/mail/mu/mp/539/#co" +
-            "?to=" + encodeURIComponent(recipient) +
-            "&su=" + encodeURIComponent(subject) +
-            "&body=" + encodeURIComponent(body) +
-            "#Intent;scheme=https;package=com.google.android.gm;" +
-            "S.browser_fallback_url=" +
-            encodeURIComponent(gmailWebUrl.toString()) +
-            ";end";
+        if (!contactForm.reportValidity()) return;
 
-        window.location.href = intentUrl;
-    } else {
-        // iPhone/iPad: try the Gmail app URL scheme.
-        const gmailAppUrl =
-            "googlegmail://co?to=" + encodeURIComponent(recipient) +
-            "&subject=" + encodeURIComponent(subject) +
-            "&body=" + encodeURIComponent(body);
+        const name = document.getElementById("name").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const subject = document.getElementById("subject").value.trim();
+        const message = document.getElementById("message").value.trim();
 
-        window.location.href = gmailAppUrl;
-    }
-} else {
-    // Keep your existing desktop code unchanged.
-    const params = new URLSearchParams({
-        view: "cm",
-        fs: "1",
-        to: recipient,
-        su: subject,
-        body: body
+        const recipient = "work.sujaltarkas@gmail.com";
+        const body =
+            `Name: ${name}\nEmail: ${email}\n\n${message}`;
+
+        const params = new URLSearchParams({
+            view: "cm",
+            fs: "1",
+            to: recipient,
+            su: subject,
+            body: body
+        });
+
+        const isAndroid = /Android/i.test(navigator.userAgent);
+        const isAppleMobile = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+
+        if (isAndroid) {
+            // Attempt to open Gmail directly on Android.
+            const gmailAppUrl =
+                "intent://compose?to=" + encodeURIComponent(recipient) +
+                "&subject=" + encodeURIComponent(subject) +
+                "&body=" + encodeURIComponent(body) +
+                "#Intent;scheme=mailto;" +
+                "package=com.google.android.gm;end";
+
+            window.location.href = gmailAppUrl;
+
+        } else if (isAppleMobile) {
+            // Attempt to open the Gmail app on iPhone/iPad.
+            const gmailAppUrl =
+                "googlegmail://co?to=" + encodeURIComponent(recipient) +
+                "&subject=" + encodeURIComponent(subject) +
+                "&body=" + encodeURIComponent(body);
+
+            window.location.href = gmailAppUrl;
+
+        } else {
+            // Desktop: retain Gmail web compose behavior.
+            window.location.href =
+                "https://mail.google.com/mail/?" + params.toString();
+        }
     });
-
-    window.location.href =
-        `https://mail.google.com/mail/?${params.toString()}`;
 }
