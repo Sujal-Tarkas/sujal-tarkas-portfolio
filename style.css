@@ -4324,7 +4324,8 @@ body.light-mode .designing-page-projects .creative-project img {
    MOBILE NAVIGATION
 ========================= */
 
-.navbar {
+@media screen and (max-width: 768px) {
+    .navbar {
     position: sticky !important;
     top: 0 !important;
     width: 100% !important;
