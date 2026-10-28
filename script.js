@@ -281,36 +281,53 @@ designFilters.forEach(button => {
     });
 });
 
-/* =========================
-   CONTACT FORM - GMAIL COMPOSE
-========================= */
-
+/* CONTACT FORM — preserve desktop behavior */
 const contactForm = document.getElementById("contactForm");
 
 if (contactForm) {
     contactForm.addEventListener("submit", function (event) {
         event.preventDefault();
 
+        if (!contactForm.reportValidity()) return;
+
         const name = document.getElementById("name").value.trim();
         const email = document.getElementById("email").value.trim();
         const subject = document.getElementById("subject").value.trim();
         const message = document.getElementById("message").value.trim();
 
-        // IMPORTANT: Enter Sujal's real email address here
-        const recipient = "work.sujaltarkas@gmail.com";
+        // Replace this with Sujal's real email address
+        const recipient = "work.sujaltarkas@example.com";
 
         const body =
-            `Hello Sujal,\n\n${message}\n\n` +
-            `From: ${name}\n` +
-            `Sender email: ${email}`;
+            `Hello Sujal,\n\n${message}\n\nFrom: ${name}\nSender email: ${email}`;
 
-        const gmailURL =
-            "https://mail.google.com/mail/?view=cm&fs=1" +
-            "&tf=1" +
-            `&to=${encodeURIComponent(recipient)}` +
-            `&su=${encodeURIComponent(subject)}` +
-            `&body=${encodeURIComponent(body)}`;
+        const isMobile =
+            /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
 
-        window.location.assign(gmailURL);
+        if (isMobile) {
+            // Mobile: open a prefilled Gmail compose page
+            const params = new URLSearchParams({
+                view: "cm",
+                fs: "1",
+                to: recipient,
+                su: subject,
+                body: body
+            });
+
+            window.location.href =
+                `https://mail.google.com/mail/?${params.toString()}`;
+        } else {
+            // Desktop: keep the existing Gmail compose behavior
+            const params = new URLSearchParams({
+                view: "cm",
+                fs: "1",
+                to: recipient,
+                su: subject,
+                body: body
+            });
+
+            window.location.href =
+                `https://mail.google.com/mail/?${params.toString()}`;
+        }
     });
 }
