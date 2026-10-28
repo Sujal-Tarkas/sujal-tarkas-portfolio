@@ -281,6 +281,10 @@ designFilters.forEach(button => {
     });
 });
 
+/* =========================
+   CONTACT FORM — MOBILE + DESKTOP
+========================= */
+
 const contactForm = document.getElementById("contactForm");
 
 if (contactForm) {
@@ -294,7 +298,6 @@ if (contactForm) {
         const subject = document.getElementById("subject").value.trim();
         const message = document.getElementById("message").value.trim();
 
-        // Replace with Sujal's actual email address
         const recipient = "work.sujaltarkas@example.com";
 
         const body =
@@ -303,20 +306,27 @@ if (contactForm) {
         const isMobile =
             /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
 
-        const params = new URLSearchParams({
-            to: recipient,
-            su: subject,
-            body: body
-        });
-
         if (isMobile) {
-            // Gmail mobile compose route
-            window.location.href =
-                `https://mail.google.com/mail/mu/mp/539/#co?${params.toString()}`;
+            // Use the Gmail mobile compose route you confirmed works.
+            const mobileUrl = new URL(
+                "https://mail.google.com/mail/mu/mp/539/"
+            );
+
+            mobileUrl.searchParams.set("to", recipient);
+            mobileUrl.searchParams.set("su", subject);
+            mobileUrl.searchParams.set("body", body);
+            mobileUrl.hash = "co";
+
+            window.location.href = mobileUrl.toString();
         } else {
-            // Keep desktop Gmail compose behavior
-            params.set("view", "cm");
-            params.set("fs", "1");
+            // Keep desktop behavior unchanged.
+            const params = new URLSearchParams({
+                view: "cm",
+                fs: "1",
+                to: recipient,
+                su: subject,
+                body: body
+            });
 
             window.location.href =
                 `https://mail.google.com/mail/?${params.toString()}`;
