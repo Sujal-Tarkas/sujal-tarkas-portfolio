@@ -281,7 +281,6 @@ designFilters.forEach(button => {
     });
 });
 
-/* CONTACT FORM — preserve desktop behavior */
 const contactForm = document.getElementById("contactForm");
 
 if (contactForm) {
@@ -295,7 +294,7 @@ if (contactForm) {
         const subject = document.getElementById("subject").value.trim();
         const message = document.getElementById("message").value.trim();
 
-        // Replace this with Sujal's real email address
+        // Replace with Sujal's actual email address
         const recipient = "work.sujaltarkas@example.com";
 
         const body =
@@ -304,27 +303,20 @@ if (contactForm) {
         const isMobile =
             /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
 
-        if (isMobile) {
-            // Mobile: open a prefilled Gmail compose page
-            const params = new URLSearchParams({
-                view: "cm",
-                fs: "1",
-                to: recipient,
-                su: subject,
-                body: body
-            });
+        const params = new URLSearchParams({
+            to: recipient,
+            su: subject,
+            body: body
+        });
 
+        if (isMobile) {
+            // Gmail mobile compose route
             window.location.href =
-                `https://mail.google.com/mail/?${params.toString()}`;
+                `https://mail.google.com/mail/mu/mp/539/#co?${params.toString()}`;
         } else {
-            // Desktop: keep the existing Gmail compose behavior
-            const params = new URLSearchParams({
-                view: "cm",
-                fs: "1",
-                to: recipient,
-                su: subject,
-                body: body
-            });
+            // Keep desktop Gmail compose behavior
+            params.set("view", "cm");
+            params.set("fs", "1");
 
             window.location.href =
                 `https://mail.google.com/mail/?${params.toString()}`;
