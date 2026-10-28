@@ -282,54 +282,52 @@ designFilters.forEach(button => {
 });
 
 /* =========================
-   CONTACT FORM — MOBILE + DESKTOP
+   CONTACT FORM
 ========================= */
 
 const contactForm = document.getElementById("contactForm");
+if (isMobile) {
+    const gmailWebUrl = new URL(
+        "https://mail.google.com/mail/mu/mp/539/"
+    );
 
-if (contactForm) {
-    contactForm.addEventListener("submit", function (event) {
-        event.preventDefault();
+    gmailWebUrl.searchParams.set("to", recipient);
+    gmailWebUrl.searchParams.set("su", subject);
+    gmailWebUrl.searchParams.set("body", body);
+    gmailWebUrl.hash = "co";
 
-        if (!contactForm.reportValidity()) return;
+    // Android: try opening Gmail through its Android intent.
+    if (/Android/i.test(navigator.userAgent)) {
+        const intentUrl =
+            "intent://mail.google.com/mail/mu/mp/539/#co" +
+            "?to=" + encodeURIComponent(recipient) +
+            "&su=" + encodeURIComponent(subject) +
+            "&body=" + encodeURIComponent(body) +
+            "#Intent;scheme=https;package=com.google.android.gm;" +
+            "S.browser_fallback_url=" +
+            encodeURIComponent(gmailWebUrl.toString()) +
+            ";end";
 
-        const name = document.getElementById("name").value.trim();
-        const email = document.getElementById("email").value.trim();
-        const subject = document.getElementById("subject").value.trim();
-        const message = document.getElementById("message").value.trim();
+        window.location.href = intentUrl;
+    } else {
+        // iPhone/iPad: try the Gmail app URL scheme.
+        const gmailAppUrl =
+            "googlegmail://co?to=" + encodeURIComponent(recipient) +
+            "&subject=" + encodeURIComponent(subject) +
+            "&body=" + encodeURIComponent(body);
 
-        const recipient = "work.sujaltarkas@example.com";
-
-        const body =
-            `Hello Sujal,\n\n${message}\n\nFrom: ${name}\nSender email: ${email}`;
-
-        const isMobile =
-            /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-
-        if (isMobile) {
-            // Use the Gmail mobile compose route you confirmed works.
-            const mobileUrl = new URL(
-                "https://mail.google.com/mail/mu/mp/539/"
-            );
-
-            mobileUrl.searchParams.set("to", recipient);
-            mobileUrl.searchParams.set("su", subject);
-            mobileUrl.searchParams.set("body", body);
-            mobileUrl.hash = "co";
-
-            window.location.href = mobileUrl.toString();
-        } else {
-            // Keep desktop behavior unchanged.
-            const params = new URLSearchParams({
-                view: "cm",
-                fs: "1",
-                to: recipient,
-                su: subject,
-                body: body
-            });
-
-            window.location.href =
-                `https://mail.google.com/mail/?${params.toString()}`;
-        }
+        window.location.href = gmailAppUrl;
+    }
+} else {
+    // Keep your existing desktop code unchanged.
+    const params = new URLSearchParams({
+        view: "cm",
+        fs: "1",
+        to: recipient,
+        su: subject,
+        body: body
     });
+
+    window.location.href =
+        `https://mail.google.com/mail/?${params.toString()}`;
 }
